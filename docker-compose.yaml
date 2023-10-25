@@ -1,0 +1,46 @@
+version: '3'
+
+services: 
+
+  app:
+    build:
+      context: ./nodejs
+      dockerfile: Dockerfile
+    container_name: app
+    networks: 
+      - desafio2
+    volumes:
+      - ./nodejs/app:/home/node/app
+    tty: true
+    depends_on:
+      - db-desafio
+
+  db-desafio:
+    image: mysql:5.7
+    command:  --innodb-use-native-aio=0
+    container_name: db-desafio
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - desafio2
+
+  nginx: 
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    networks: 
+      - desafio2
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+
+networks: 
+  desafio2:
+    driver: bridge
