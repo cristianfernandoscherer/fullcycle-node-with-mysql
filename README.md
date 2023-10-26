@@ -23,7 +23,7 @@ Esse desafio aplicado pela Fullcycle propõem a criação de um projeto onde o u
     </li>
     <li>
       Conectado no banco de dados, rode o script abaixo para criar a tabela que será utilizada pela aplicação:<br>
-      <i>CREATE TABLE peoples (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, PRIMARY KEY(id));</i>
+      <i>CREATE TABLE people (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, PRIMARY KEY(id));</i>
     </li>
 </ul>
 
